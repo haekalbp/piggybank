@@ -5,16 +5,17 @@
     <h1 class="h2">Edit Category</h1>
 </div>
 
-@if(session()->has('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
-
 <div>
   <form action="/dashboard/category/{{ $category->id }}" method="POST">
   @method('put')
   @csrf
+    <div class="mb-3">
+      <label for="type" class="col-form-label">Type</label>
+      <select id="type" class="form-select" name="type">
+          <option value="Expenditure">Expenditure</option>
+          <option value="Income">Income</option>
+      </select>
+    </div>
     <div class="mb-3">
       <label for="name" class="col-form-label">Name</label>
       <input type="text" name="name" class="form-control" id="name" required value="{{ $category->name }}">

@@ -112,7 +112,7 @@ class TransactionController extends Controller
         $transaction->category_id = $request->category_id;
         $transaction->save();
 
-        return redirect()->intended('/dashboard/transaction')->with('success', "Successfully update transaction!");
+        return redirect()->intended('/dashboard/transaction')->with('success', "Transaction has been updated!");
     }
 
     /**

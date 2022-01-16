@@ -21,6 +21,13 @@
             @method('POST')
             {{ csrf_field() }}
               <div class="mb-3">
+                <label for="type" class="col-form-label">Type</label>
+                <select id="type" class="form-select" name="type">
+                    <option value="Expenditure">Expenditure</option>
+                    <option value="Income">Income</option>
+                </select>
+              </div>
+              <div class="mb-3">
                 <label for="name" class="col-form-label">Name</label>
                 <input type="text" name="name" class="form-control" id="name" autofocus>
               </div>

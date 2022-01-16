@@ -5,6 +5,14 @@
     <h1 class="h2">My Transactions</h1>
     <a class="btn btn-dark" href="/dashboard/transaction/create">Add New</a>
 </div>
+
+<!-- Alert Sukses Create -->
+@if(session()->has('success'))
+<div class="alert alert-success" role="alert">
+  {{ session('success') }}
+</div>
+@endif
+
 <div class="table-responsive">
   <table class="table table-striped table-sm text-center">
     <thead>

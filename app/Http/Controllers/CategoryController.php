@@ -47,10 +47,11 @@ class CategoryController extends Controller
         ]);
 
         $category = new Category();
+        $category->type = $request->type;
         $category->name = $request->name;
         $category->save();
 
-        return redirect()->intended('/dashboard/category');
+        return redirect()->intended('/dashboard/category')->with('success', 'New category has been added!');
     }
 
     /**
@@ -94,10 +95,11 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', "Category Not found!");
         }
 
+        $category->type = $request->type;
         $category->name = $request->name;
         $category->save();
 
-        return redirect()->intended('/dashboard/category')->with('success', "Successfully update category!");
+        return redirect()->intended('/dashboard/category')->with('success', "Category has been updated!");
     }
 
     /**
@@ -116,6 +118,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->intended('/dashboard/category')->with('success', "Successfully delete category!");
+        return redirect()->intended('/dashboard/category')->with('success', "Category has been deleted!");
     }
 }

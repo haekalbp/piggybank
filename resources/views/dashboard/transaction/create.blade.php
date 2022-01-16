@@ -5,12 +5,6 @@
     <h1 class="h2">Create New Transaction</h1>
 </div>
 
-@if(session()->has('success'))
-<div class="alert alert-success" role="alert">
-  {{ session('success') }}
-</div>
-@endif
-
 <div>
   <form action="/dashboard/transaction" method="POST">
   @csrf
