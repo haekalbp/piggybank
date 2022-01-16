@@ -8,13 +8,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/transaction') ? 'active' : '' }}" href="/dashboard/transaction">
+            <a class="nav-link {{ Request::is('dashboard/transaction*') ? 'active' : '' }}" href="/dashboard/transaction">
               <span data-feather="dollar-sign"></span>
               Transaction
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/category') ? 'active' : '' }}" href="/dashboard/category">
+            <a class="nav-link {{ Request::is('dashboard/category*') ? 'active' : '' }}" href="/dashboard/category">
               <span data-feather="dollar-sign"></span>
               Category
             </a>

@@ -9,6 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['date', 'user_id', 'category_id', 'total', 'title'];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }

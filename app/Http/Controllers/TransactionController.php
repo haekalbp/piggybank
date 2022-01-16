@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -80,16 +81,12 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transaction $transaction)
     {
-        $transaction = Transaction::find($id);
-
-        if (!$transaction) {
-            return redirect()->back()->with('error', "Transaction Not found!");
-        }
-
-        return view('dashboard.category', [
-            "transaction" => $transaction
+        return view('dashboard.transaction.edit', [
+            'title' => 'Edit Transaction',
+            'transaction' => $transaction,
+            'categories' => Category::all()
         ]);
     }
 
@@ -112,6 +109,7 @@ class TransactionController extends Controller
         $transaction->type = $request->type;
         $transaction->total = $request->total;
         $transaction->title = $request->title;
+        $transaction->category_id = $request->category_id;
         $transaction->save();
 
         return redirect()->intended('/dashboard/transaction')->with('success', "Successfully update transaction!");
@@ -123,16 +121,9 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaction $transaction)
     {
-        $transaction = Transaction::find($id);
-
-        if (!$transaction) {
-            return redirect()->back()->with('error', "Transaction Not found!");
-        }
-
-        $transaction->delete();
-
-        return redirect()->intended('/dashboard/transaction')->with('success', "Successfully delete transaction!");
+        Transaction::destroy($transaction->id);
+        return redirect('/dashboard/transaction')->with('success', 'Transaction has been deleted!');
     }
 }

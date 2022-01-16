@@ -41,6 +41,9 @@ Route::get('/dashboard', function() {
     ]);
 })->middleware('auth');
 
+Route::resource('/dashboard/transaction', TransactionController::class)->middleware('auth');
+Route::resource('/dashboard/category', CategoryController::class)->middleware('auth');
+
 Route::get('/dashboard/transaction', [TransactionController::class, 'index'])->name('index')->middleware('auth');
 Route::get('/dashboard/transaction/create', [TransactionController::class, 'create'])->name('create')->middleware('auth');
 Route::post('/dashboard/transaction/create', [TransactionController::class, 'store'])->name('store')->middleware('auth');
@@ -55,6 +58,3 @@ Route::post('/dashboard/category/create', [CategoryController::class, 'store'])-
 Route::get('/dashboard/category/{id}', [CategoryController::class, 'edit'])->name('edit')->middleware('auth');
 Route::put('/dashboard/category/{id}', [CategoryController::class, 'update'])->name('update')->middleware('auth');
 Route::delete('/dashboard/category/{id}', [CategoryController::class, 'destroy'])->name('destroy')->middleware('auth');
-
-Route::resource('/dashboard/transaction', TransactionController::class)->middleware('auth');
-Route::resource('/dashboard/category', CategoryController::class)->middleware('auth');
