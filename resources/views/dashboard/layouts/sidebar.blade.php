@@ -15,7 +15,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/category*') ? 'active' : '' }}" href="/dashboard/category">
-              <span data-feather="dollar-sign"></span>
+              <span data-feather="codesandbox"></span>
               Category
             </a>
           </li>
