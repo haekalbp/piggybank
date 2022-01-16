@@ -17,10 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
         return view('dashboard.category.index', [
             'title' => 'Category',
-            'categories' => $category
+            'categories' => Category::all()
         ]);
     }
 
@@ -44,14 +43,12 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
+            'type' => 'required'
         ]);
 
-        $category = new Category();
-        $category->type = $request->type;
-        $category->name = $request->name;
-        $category->save();
+        Category::create($validated);
 
-        return redirect()->intended('/dashboard/category')->with('success', 'New category has been added!');
+        return redirect('/dashboard/category')->with('success', 'New category has been added!');
     }
 
     /**
@@ -60,7 +57,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) // beda dgn controller transaction
+    public function show(Category $category)
     {
         //
     }
@@ -74,9 +71,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('dashboard.category.edit', [
-            'title' => 'Category',
-            'category' => $category,
-            'categories' => Category::all()
+            'title' => 'Edit Category',
+            'category' => $category
         ]);
     }
 
@@ -108,15 +104,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::find($id);
-
-        if (!$category) {
-            return redirect()->back()->with('error', "Category Not found!");
-        }
-
-        $category->delete();
+        Category::destroy($category->id);
 
         return redirect()->intended('/dashboard/category')->with('success', "Category has been deleted!");
     }

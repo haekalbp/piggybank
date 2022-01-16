@@ -32,7 +32,7 @@
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
           <a class="btn btn-dark" href="/dashboard/category/{{ $category->id }}/edit"><i class="bi bi-pencil"></i></a>
-              <form action="{{ route('destroy', $category->id)}}" method="POST" onSubmit="return confirm('Do you really want to delete this category?');">
+              <form action="/dashboard/category/{{ $category->id }}" method="POST" onSubmit="return confirm('Do you really want to delete this category?');">
               @csrf
               @method('DELETE')
                   <button type="submit" class="btn btn-danger text-white ">
@@ -44,7 +44,7 @@
       </tr>
       @empty
       <tr>
-          <td colspan="5">Category is null.</td>
+          <td colspan="5">Category is empty.</td>
       </tr>
       @endforelse
     </tbody>

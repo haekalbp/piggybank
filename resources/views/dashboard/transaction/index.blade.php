@@ -50,7 +50,7 @@
       </tr>
       @empty
       <tr>
-          <td colspan="5">Transaction is null.</td>
+          <td colspan="5">Transaction is empty.</td>
       </tr>
       @endforelse
     </tbody>
