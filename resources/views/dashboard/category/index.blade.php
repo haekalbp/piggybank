@@ -22,7 +22,7 @@
               <td>{{ $category->name }}</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                @include('dashboard.category.edit')
+                <a class="btn btn-dark" href="/dashboard/category/{{ $category->id }}/edit"><i class="bi bi-pencil"></i></a>
                     <form action="{{ route('destroy', $category->id)}}" method="POST" onSubmit="return confirm('Do you really want to delete this category?');">
                     @csrf
                     @method('DELETE')

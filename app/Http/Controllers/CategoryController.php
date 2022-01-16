@@ -70,16 +70,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::find($id);
-
-        if (!$category) {
-            return redirect()->back()->with('error', "Category Not found!");
-        }
-
-        return view('dashboard.category', [
-            "category" => $category
+        return view('dashboard.category.edit', [
+            'title' => 'Category',
+            'category' => $category,
+            'categories' => Category::all()
         ]);
     }
 

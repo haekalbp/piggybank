@@ -1,26 +1,28 @@
-<button type="button" class="btn btn-dark text-white" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-pencil"></i></button>
+@extends('dashboard.layouts.main')
 
-<div class="modal fade text-start" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="{{ route('update', $category->id) }}" method="POST">
-        {{ csrf_field() }}
-        @method('PUT')
-            <div class="mb-3">
-                <label for="name" class="col-form-label">Name</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ $category->name }}">
-            </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-primary" type="submit">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+@section('container')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Edit Category</h1>
 </div>
+
+@if(session()->has('success'))
+<div class="alert alert-success" role="alert">
+  {{ session('success') }}
+</div>
+@endif
+
+<div>
+  <form action="/dashboard/category/{{ $category->id }}" method="POST">
+  @method('put')
+  @csrf
+    <div class="mb-3">
+      <label for="name" class="col-form-label">Name</label>
+      <input type="text" name="name" class="form-control" id="name" required value="{{ $category->name }}">
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a href="/dashboard/category" class="btn btn-secondary">Cancel</a>
+      <button class="btn btn-primary type="submit">Edit Category</button>
+    </div>
+  </form>
+</div>
+@endsection
